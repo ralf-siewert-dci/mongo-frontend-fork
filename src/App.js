@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import "./App.css";
+
+// - state variable -> user
+// beim laden der seite (useEffect) -> api anfrage (axios.get) -> url: (backend)
+// backend starten: port
+// react: 4000 / express: 3000
 
 function App() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const response = await axios.get("http://localhost:3000/users");
+      setUsers(response.data);
+      console.log(response.data);
+      // axios
+    };
+    loadData();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Zusammenarbeit Git</h1>
+      <div>{JSON.stringify(users)}</div>
     </div>
   );
 }
