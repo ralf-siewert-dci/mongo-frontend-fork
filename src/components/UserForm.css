@@ -1,0 +1,12 @@
+.userform {
+  width: 60ch;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.userform input,
+.userform label {
+  padding: 0.5rem;
+  font-size: 16px;
+}
