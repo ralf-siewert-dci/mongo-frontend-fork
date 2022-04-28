@@ -7,13 +7,15 @@ export default function UserList() {
 
   useEffect(() => {
     const loadData = async () => {
-      const response = await axios.get("http://localhost:3000/users");
+      const response = await axios.get(
+        `http://localhost:3000/users/?min-age=${ageFilter}`
+      );
       setUsers(response.data);
       console.log(response.data);
       // axios
     };
     loadData();
-  }, []);
+  }, [ageFilter]);
 
   return (
     <main>
