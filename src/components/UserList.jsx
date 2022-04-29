@@ -4,6 +4,7 @@ import axios from "axios";
 export default function UserList() {
   const [users, setUsers] = useState([]);
   const [ageFilter, setAgeFilter] = useState(18);
+  const [sliding, setSliding] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -14,8 +15,10 @@ export default function UserList() {
       console.log(response.data);
       // axios
     };
-    loadData();
-  }, [ageFilter]);
+    if (!sliding) {
+      loadData();
+    }
+  }, [ageFilter, sliding]);
 
   return (
     <main>
@@ -29,6 +32,12 @@ export default function UserList() {
         value={ageFilter}
         onChange={(e) => {
           setAgeFilter(e.target.value);
+        }}
+        onMouseDown={() => {
+          setSliding(true);
+        }}
+        onMouseUp={() => {
+          setSliding(false);
         }}
       />{" "}
       {ageFilter}
