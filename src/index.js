@@ -18,6 +18,10 @@ root.render(
           <Route path="/" element={<HomePage />} />
           <Route path="/users" element={<UserList />} />
           <Route path="/users/new" element={<UserForm />} />
+          <Route
+            path="/users/edit/:id"
+            element={<UserForm editMode={true} />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

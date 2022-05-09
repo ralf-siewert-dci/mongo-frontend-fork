@@ -1,0 +1,13 @@
+.list__row button {
+  padding: 0 1rem;
+  font-size: 15px;
+}
+.list__row button:hover {
+  cursor: pointer;
+}
+.button__delete {
+  background-color: hsl(0, 69%, 67%);
+}
+.button__edit {
+  background-color: hsl(199, 91%, 64%);
+}
