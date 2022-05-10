@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./UserForm.css";
 
+const apiHost = process.env.REACT_APP_API_HOST;
+
 export default function UserForm({ editMode = false }) {
   const [userData, setUserData] = useState({
     firstName: "",
@@ -15,9 +17,7 @@ export default function UserForm({ editMode = false }) {
     if (editMode) {
       const loadData = async () => {
         // console.log(params.id);
-        const response = await axios.get(
-          `http://localhost:3000/users/${params.id}`
-        );
+        const response = await axios.get(`${apiHost}/users/${params.id}`);
         setUserData(response.data);
         // console.log(response.data);
       };
@@ -33,7 +33,7 @@ export default function UserForm({ editMode = false }) {
     e.preventDefault();
     try {
       console.log("Trying to add user...", userData);
-      const result = await axios.post("http://localhost:3000/users", userData);
+      const result = await axios.post(`${apiHost}/users`, userData);
       console.log(result);
     } catch (err) {
       console.error(err);
@@ -45,7 +45,7 @@ export default function UserForm({ editMode = false }) {
     try {
       console.log("Trying to add user...", userData);
       const result = await axios.patch(
-        `http://localhost:3000/users/${params.id}`,
+        `${apiHost}/users/${params.id}`,
         userData
       );
       console.log(result);

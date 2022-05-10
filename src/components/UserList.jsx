@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./UserList.css";
 
+const apiHost = process.env.REACT_APP_API_HOST;
+
 export default function UserList() {
   const [users, setUsers] = useState([]);
   const [ageFilter, setAgeFilter] = useState(18);
@@ -11,7 +13,7 @@ export default function UserList() {
   useEffect(() => {
     const loadData = async () => {
       const response = await axios.get(
-        `http://localhost:3000/users/?min-age=${ageFilter}`
+        `${apiHost}/users/?min-age=${ageFilter}`
       );
       setUsers(response.data);
       console.log(response.data);
@@ -23,7 +25,7 @@ export default function UserList() {
   const deleteUser = async (id) => {
     try {
       console.log("Trying to delete user with id:", id);
-      const result = await axios.delete(`http://localhost:3000/users/${id}`);
+      const result = await axios.delete(`${apiHost}/users/${id}`);
       console.log(result);
     } catch (err) {
       console.error(err);
