@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./UserList.css";
 
 export default function UserList() {
   const [users, setUsers] = useState([]);
   const [ageFilter, setAgeFilter] = useState(18);
   const [sliding, setSliding] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadData = async () => {
@@ -19,6 +22,16 @@ export default function UserList() {
       loadData();
     }
   }, [ageFilter, sliding]);
+
+  const deleteUser = async (id) => {
+    try {
+      console.log("Trying to delete user with id:", id);
+      const result = await axios.delete(`http://localhost:3000/users/${id}`);
+      console.log(result);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <main>
@@ -49,8 +62,22 @@ export default function UserList() {
               {user.firstName} {user.lastName} ({user.age})
             </span>
             <span>
-              <button>EDIT</button>
-              <button>DELTE</button>
+              <button
+                className="button__edit"
+                onClick={() => {
+                  navigate("/users/edit/" + user._id);
+                }}
+              >
+                EDIT
+              </button>
+              <button
+                className="button__delete"
+                onClick={() => {
+                  deleteUser(user._id);
+                }}
+              >
+                DELETE
+              </button>
             </span>
           </p>
         ))}

@@ -1,0 +1,24 @@
+.userform {
+  width: 60ch;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.userform input,
+.userform label {
+  padding: 0.5rem;
+  font-size: 16px;
+}
+.userform button {
+  padding: 0.5rem 1rem;
+  font-size: 15px;
+  font-weight: bold;
+  grid-column: 2 / 3;
+}
+.button__add {
+  background-color: #81c784;
+}
+.button_edit {
+  background-color: hsl(199, 91%, 64%);
+}
