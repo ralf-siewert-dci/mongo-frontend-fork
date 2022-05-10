@@ -14,14 +14,11 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/users" element={<UserList />} />
-          <Route path="/users/new" element={<UserForm />} />
-          <Route
-            path="/users/edit/:id"
-            element={<UserForm editMode={true} />}
-          />
+        <Route path="" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="users" element={<UserList />} />
+          <Route path="users/new" element={<UserForm />} />
+          <Route path="users/edit/:id" element={<UserForm editMode={true} />} />
         </Route>
       </Routes>
     </BrowserRouter>
